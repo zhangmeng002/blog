@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load myfilter %}
+{% block title %}详情页面{% endblock %}
+ {% block left %}
+     <div id="main">
+
+            <article class="article article-type-post">
+                <div class="article-meta">
+                    <a class="article-date">
+                        <time>{{ post.created|date:'Y-m-d H:i:s' }}</time>
+                    </a>
+                    <div class="article-category">
+                        <a class="article-category-link" href="#" target="_blank">{{ post.category.cname }}</a>
+                    </div>
+                </div>
+                <div class="article-inner">
+                    <header class="article-header">
+                        <h1 itemprop="name">
+                            <a class="article-title" href="#" target="_blank">{{ post.title }}</a>
+                        </h1>
+                    </header>
+                    <div class="article-entry" itemprop="articleBody">
+                        <h2>前言</h2>
+
+                        {{ post.desc }}
+                        <hr/>
+                        {{ post.content|md|safe }}
+
+                    </div>
+                    <footer class="article-footer">
+                        <a data-url="存放文章的url" class="article-share-link">分享</a>
+                        <ul class="article-tag-list">
+                            {% for tag in post.tag.all %}
+                                <li class="article-tag-list-item">
+                                    <a class="article-tag-list-link" href="#">{{ tag.tname }}</a>
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+                    </footer>
+                </div>
+            </article>
+
+
+
+        </nav>
+
+
+    </div>
+ {% endblock %}
